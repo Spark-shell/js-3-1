@@ -6,6 +6,11 @@
 		<link rel="stylesheet" href="../css/style.css" type="text/css" />  
 		<script src="../lib/jquery.js" type="text/javascript"></script>
 		<script>
+          $(function(){
+            $("input[type='text']").each(function(idx, el){
+              console.log(idx, $(el).val());
+            });
+          });
 		</script>
 		<style>
 		</style>
@@ -13,9 +18,9 @@
 	<body>
 		<form action="demo-2.html">
 			<label for="name">Имя</label><br />
-			<input type="text" name="name" id="name"/><br />
+			<input type="text" name="name" id="name" value="John"/><br />
 			<label for="email">Email</label><br />
-			<input type="text" name="email" id="email" /><br />
+			<input type="text" name="email" id="email" value="john@smith.com"/><br />
 			<label for="books">Книги</label><br />
 			<select name="books" id="books">
 				<option value="1">AJAX</option>
