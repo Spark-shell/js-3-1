@@ -8,12 +8,24 @@
   <script src="../lib/jquery.js" type="text/javascript"></script>
 	<script>
 	/** ЗАДАНИЕ 1
-		- В таблице с id="courses" каждую четную строку выделите другим цветом
+		- В таблице с id="courses" каждую четную строку 
+        выделите другим цветом
 		- В таблице с id="courses" выберите полное название курса AJAX 
 			(то есть, "AJAX. Разработка веб - приложений для Web 2.0") 
 			и добавьте его в <span> вместо строки "какой-то курс"
 			(третий <p> в <div id="news">)
 	*/
+      $(function(){
+        $("table tbody tr:odd").css("background", "white");
+        var txt = $("table#courses tbody td:contains('AJAX')")
+                    .eq(1).text();
+        txt = txt.slice(0, txt.indexOf(" ("));
+        var p = $("div#content div#news p").not(":has(span.hidden)");
+        p.children("span").text(txt);
+      });
+      
+      
+      
 	/** ЗАДАНИЕ 2
 		- В таблице с id="courses" выберите коды всех курсов и для каждого курса 
 			- сформируйте строку вида "код.pdf", например "xml.pdf"
