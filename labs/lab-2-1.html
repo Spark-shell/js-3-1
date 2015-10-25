@@ -7,16 +7,46 @@
   <link rel="stylesheet" href="../css/style.css" type="text/css" />  
   <script src="../lib/jquery.js" type="text/javascript"></script>
 	<script>
+    $(function(){
 	/** ЗАДАНИЕ 1
 		- В <div id="news"> скрыть все элементы <span> с классом "hidden"
 		- При нажатии левой кнопки мышки на элемент <p> скрытые элементы <span> должен показываться.
 			При повторном нажатии - прятаться.
 	*/
+      $("div#news span.hidden").hide();
+      $("div#news p").on("click", function(){
+        $(this).children("span").toggle();
+      });
+      
+    
+      
 	/** ЗАДАНИЕ 2
 		- В таблице с id="courses" при наведении курсора мышки на элемент <tr> должны:
 			- меняться цвет фона данной строки таблицы
 			- текст в колонке "Комплекс" выделяться полужирным
 	*/
+      var tr = $("table#courses tbody tr");
+      /*tr.on("mouseenter", function(){
+        $(this).css("background", "yellow");
+        $(this).children().eq(3).css("font-weight", "bold");
+      });
+      tr.on("mouseleave", function(){
+        $(this).css("background", "");
+        $(this).children().eq(3).css("font-weight", "");
+      });*/
+      
+      function changeTableColor(eType,obj){
+        var bg = ""; var fw = "";
+        if(eType == "mouseenter"){
+          bg = "yellow"; fw = "bold";
+        }
+          obj.css("background", bg)
+            .children().eq(3).css("font-weight", fw);
+      }
+      tr.on("mouseenter mouseleave", function(e){
+        $(this).css("background", "yellow");
+        changeTableColor(e.type, $(this));
+      });
 	/** ЗАДАНИЕ 3 (Дополнительно для тех, кто осилил предыдущие задания)
 		- Спрятать <div id="form">
 		- В элемент <h2>Ваш комментарий</h2> добавить атрибут "title" со значением 
@@ -36,6 +66,7 @@
 		- Разрешить ввод только символов [8, 9, 13, 16, 17, 32, 37, 39, 46, 65-122, 189]
 			При вводе недопустимого символа вывести alert('Недопустимый символ') и удалить этот символ
 	*/
+    });
 	</script>
 	<style>.emptyField{background-color:red}</style>
 </head>
