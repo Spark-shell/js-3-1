@@ -7,6 +7,26 @@
   <link rel="stylesheet" href="../css/style.css" type="text/css" />  
   <script src="../lib/jquery.js" type="text/javascript"></script>
 	<script>
+      $(function(){
+        var tr = $("table tbody tr");
+        var complexes = tr.map(function(i, obj){
+          return $(obj).children().eq(3).text();
+        });
+        function unique(arr){
+          var tmp = [];
+          for(var i = 0; i<arr.length; i++){
+            if(tmp.indexOf(arr[i]) ==  -1)
+              tmp.push(arr[i]);
+          }
+          return tmp;
+        }
+        complexes = unique(complexes);
+        $("span#complex").text(
+          $.map(complexes, function(obj, i){
+            return complexes[i];
+          }).join(", ")
+        );
+      });
 	/** ЗАДАНИЕ 1
 		- В таблице с id="courses" выберите названия комлексов из колонки "Комплекс"
 		- Найдите <span id="complex"> и заполните его списком комплексов через запятую
