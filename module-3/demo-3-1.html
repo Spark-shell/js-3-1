@@ -6,15 +6,17 @@
 		<script src="../lib/jquery.js" type="text/javascript"></script>
 		<script>
 			$(function(){
+                $.fx.speeds._default = 2000;
 				$('#toggle').click(function() {
 					if ($('#box').is(':visible')) {
-						$('#box').hide();
+						$('#box').slideUp("fast");
 					} else {
-						$('#box').show();
+						$('#box').slideDown("slow");
 					}
 				});
 				/*$('#toggle').click(function() {
-					$('#box').toggle();
+					//$('#box').slideToggle();
+                    $('#box').fadeToggle();
 				});*/
 			});
 		</script>
