@@ -9,10 +9,10 @@
                 $.fx.speeds._default = 2000;
 				$('#toggle').click(function() {
 					if ($('#box').is(':visible')) {
-						$('#box').slideUp("fast");
-					} else {
+						$('#box').slideUp().delay(1000).slideDown(300);
+					} /*else {
 						$('#box').slideDown("slow");
-					}
+					}*/
 				});
 				/*$('#toggle').click(function() {
 					//$('#box').slideToggle();
