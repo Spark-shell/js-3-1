@@ -6,13 +6,23 @@
 	<script src="../lib/jquery.js" type="text/javascript"></script>
 	<script>
 		$(function(){
+      $.fn.mySuperFunc = function(){
+        console.log("hello")
+      };
 			var content = $("div.content");
       var winW = $(window).width() / 2 -
           content.outerWidth() / 2;
+      var winH = $(window).height() / 2 -
+          content.outerHeight() / 2;
       $("button").on("click", function(){
+        content.mySuperFunc();
         //console.log(winW)
-        content.css({"left":winW, "position":"absolute"
-                    });
+        content
+          .animate({"left":winW, "position":"absolute"
+                    })
+          .animate({"top":winH}, {duration: 500, queue:false});
+
+
         /*content.animate({
           "font-size": "+=2",
           "width": "+=200"
