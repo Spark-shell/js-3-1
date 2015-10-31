@@ -3,6 +3,7 @@
 <head>
   <meta charset=utf-8>
   <title>Слайд-шоу</title>
+  <script src="../lib/handlebars.js" type="text/javascript"></script>
   <style>
     *{ margin: 0; padding: 0 }
     div#show{
@@ -30,19 +31,26 @@
       {alt: myImgAlt + "3", src: "img/blue.gif"},
       {alt: myImgAlt + "4", src: "img/yellow.gif"},
     ];
-  </script>   
-  <script id="myTpl" type="jquery/template">
-    <li><img src="{{src}}" alt="{{alt}}"></li>
   </script>
+  <script id="myTpl" type="text/x-handlebars-template">
+    <ul>
+    {{#each this}}
+      <li><img src="{{src}}" alt="{{alt}}"></li>
+    {{/each}}
+    </ul>
+</script>
+  <!--<script id="myTpl" type="jquery/template">
+    <li><img src="{{src}}" alt="{{alt}}"></li>
+  </script>-->
 </head>
 <body>
   <div class="view">
-    <ul>
-      <!--<li><img src="img/red.gif" alt=""></li>
+   <!-- <ul>
+      <li><img src="img/red.gif" alt=""></li>
       <li><img src="img/green.gif" alt=""></li>
       <li><img src="img/blue.gif" alt=""></li>
-      <li><img src="img/yellow.gif" alt=""></li>-->
-    </ul>
+      <li><img src="img/yellow.gif" alt=""></li>
+    </ul>-->
   </div>
   <div id="show">
     <button id="prev">Назад</button>
@@ -50,6 +58,11 @@
   </div>
 <script src="../lib/jquery.js" type="text/javascript"></script>
 <script>
+  var tpl = Handlebars.compile($("#myTpl").html());
+  $("div.view").append(tpl(aImgs));
+</script>
+  
+  <!--<script>
   var tpl = $("#myTpl").html(),
       text = "";
   $.each(aImgs, function(key, val){
@@ -58,7 +71,7 @@
             .replace(/{{alt}}/ig, val.alt);
   });
   $("div.view ul").append(text);
-</script>
+</script>-->
 <script src="slide-show.js"></script>
 
 </body>
